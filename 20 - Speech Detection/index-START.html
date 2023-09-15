@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Speech Detection</title>
+        <link rel="icon" href="https://fav.farm/🔥" />
+    </head>
+
+    <body>
+
+        <div class="words" contenteditable>
+        </div>
+
+        <script>
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; // in chrome it starts with webkit 
+
+            let p = document.createElement('p')
+            const words = document.querySelector('.words')
+            words.append(p)
+
+            const speech = new SpeechRecognition()
+            speech.interimResults = true // results are shown as u're speaking, if false you have to wait before results are shown
+
+            speech.addEventListener('result', (e) => {
+                const transcript = Array.from(e.results)
+                    .map(result => result[0].transcript)
+                    .join('')
+
+
+                p.textContent = transcript;
+
+                if (e.results[0].isFinal) { // is the person done speaking the sentence
+                    p = document.createElement('p') // we're not setting it to let or const coz it'll be defined within that scope 
+                    //                  and when this function runs again bcoz we've set event listener here, it won't result in err 
+                    words.append(p)
+                }
+            })
+
+            speech.addEventListener('end', speech.start) // so that it runs multiple times, not only once
+            speech.start()
+
+        </script>
+
+
+        <style>
+            html {
+                font-size: 10px;
+            }
+
+            body {
+                background: #ffc600;
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: 200;
+                font-size: 20px;
+            }
+
+            .words {
+                max-width: 500px;
+                margin: 50px auto;
+                background: white;
+                border-radius: 5px;
+                box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
+                padding: 1rem 2rem 1rem 5rem;
+                background: linear-gradient(#d9eaf3, #fff 4%) 0 4px;
+                background-size: 100% 3rem;
+                position: relative;
+                line-height: 3rem;
+            }
+
+            p {
+                margin: 0 0 3rem;
+            }
+
+            .words:before {
+                content: '';
+                position: absolute;
+                width: 4px;
+                top: 0;
+                left: 30px;
+                bottom: 0;
+                border: 4px solid;
+                border-color: transparent #efe4e4;
+                /* top and bottom | left and right */
+            }
+        </style>
+
+    </body>
+
+</html>

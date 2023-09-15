@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --spacing: 10px;
+    --blur: 10px;
+    --base: #ffc600;
+}
+
+body{
+    background: rgb(65, 26, 65);
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 50px;
+    color: white;
+    font-weight: 100;
+}
+
+.highlight{
+    color: var(--base);
+}
+
+img{
+    padding: var(--spacing);
+    background: var(--base);
+    filter: blur(var(--blur));
+}
+.controls{
+    margin-bottom: 50px;
+}

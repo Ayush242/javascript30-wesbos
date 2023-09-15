@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Understanding JavaScript's Capture</title>
+        <link rel="icon" href="https://fav.farm/🔥" />
+    </head>
+
+    <body class="bod">
+
+        <div class="one">
+            <div class="two">
+                <div class="three">
+                </div>
+            </div>
+        </div>
+
+        <style>
+            html {
+                box-sizing: border-box;
+            }
+
+            *,
+            *:before,
+            *:after {
+                box-sizing: inherit;
+            }
+
+            div {
+                width: 100%;
+                padding: 100px;
+            }
+
+            .one {
+                background: thistle;
+            }
+
+            .two {
+                background: mistyrose;
+            }
+
+            .three {
+                background: coral;
+            }
+        </style>
+
+        <button></button>
+        <script>
+            const divs = document.querySelectorAll('div')
+
+            function logText(e) {
+                e.stopPropagation()
+                console.log(this);
+            }
+            document.body.addEventListener('click', logText, { capture: false })
+
+            divs.forEach(div => div.addEventListener('click', logText, { once: true }))
+            // once is used to run it once and then unbinds the event ,it's like saying div..removeEventListener('click',logText)
+            // so it will one by one unbind it from the element. So at first we will have third div, then it will unbind. Clicking again on the third div will log second and then first and then body . body will be displayed again and again coz it doesn't have once set so it doesn't unbinds
+
+
+        </script>
+    </body>
+
+</html>

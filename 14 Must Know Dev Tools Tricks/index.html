@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Console Tricks!</title>
+        <link rel="icon" href="https://fav.farm/🔥" />
+    </head>
+
+    <body>
+
+        <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+        <script>
+            const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+            function makeGreen() {
+                const p = document.querySelector('p');
+                p.style.color = '#BADA55';
+                p.style.fontSize = '50px';
+            }
+
+            // Regular
+            // console.log('hi');
+            // Interpolated
+            // console.log('hi %s , how are you?', 'ayush')
+
+            // Styled
+            // console.log('%chi ,how are you?', 'font-size: 50px; color:red; text-shadow: 10px 10px 5px blue')
+
+            // warning!
+            console.warn('no!!')
+
+            // Error :|
+            console.error('no!!')
+
+            // Info
+            console.info('whats up')
+
+            // Testing
+            const p = document.querySelector('p');
+            console.assert(p.classList.contains('ouch'), "wrong element")
+
+            // clearing
+            console.clear()
+
+            // Viewing DOM Elements
+            console.log(p);
+            console.dir(p)
+            console.clear()
+
+            // Grouping together
+            dogs.forEach(dog => {
+                console.groupCollapsed(`${dog.name}`)
+                console.log(`dog name: ${dog.name}`)
+                console.log(`Age: ${dog.age}`);
+                console.log(`Dog years age: ${dog.age * 7}`);
+                console.groupEnd(`${dog.name}`)
+            })
+
+            console.clear()
+            // counting
+            // console.count('a')
+            // console.count('a')
+            // console.count('a')
+            // console.count('a')
+            // timing
+            const p1 = performance.now();
+            console.log(p1);
+            // fetch('https://api.github.com/users/wesbos')
+            //     .then(res => res.json())
+            //     .then(data => {
+            //         console.timeEnd('fetch data')
+            //         console.log(data);
+            //     })
+        </script>
+    </body>
+
+</html>
